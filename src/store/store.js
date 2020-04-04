@@ -1,0 +1,50 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+export const store=new Vuex.Store({
+    state:{
+        foodList:[],
+        userName:'',
+        isLogin:false
+    },
+    getters:{
+        food:state=>state.foodList,
+        name:state=>state.userName,
+        login:state=>state.isLogin,
+    },
+    mutations:{
+        getFood(state,food){
+            if(state.foodList.length===0){
+                state.foodList.push(food)
+            }else{
+                if(state.foodList.filter(p=>p.name===food.name).length===0){
+                    state.foodList.push(food)
+                }
+            }
+            console.log(state.foodList)
+        },
+        userStatus(state,user){
+            if(user){
+                state.userName=user
+                state.isLogin=true
+            }else{
+                state.userName=null
+                state.isLogin=false
+            }
+        },
+        clearFoodList(state,none){
+            state.foodList=none
+        },
+        seleteDelete(state,list){
+            state.foodList=list
+        }
+    },
+    actions:{
+        setUser({commit},user){
+            commit("userStatus",user)
+        },
+        controlFoodList({commit},none){
+            commit('clearFoodList',none)
+        }
+    }
+})
