@@ -107,8 +107,9 @@ export default {
             .add{
                 margin-right: 10px;
             }
-            .buy{
-            }
+            // .buy{
+
+            // }
         }
     }
 }
