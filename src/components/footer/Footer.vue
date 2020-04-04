@@ -11,6 +11,9 @@
 </template>
 
 <script>
+/**
+ * 底部导航
+ */
 export default {
   data () {
     return {

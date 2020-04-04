@@ -252,6 +252,9 @@ export default {
 
     // },
     methods:{
+      /**
+       * 选择地址
+       */
       addressChange(value,index){
         switch(index){
           case 0:
@@ -270,6 +273,9 @@ export default {
       select(){
           this.flag=!this.flag;
       },
+      /**
+       * 点击显示商品详情
+       */
      newPage(food){
       //  console.log(food)
      

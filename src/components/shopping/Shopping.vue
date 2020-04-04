@@ -19,6 +19,9 @@
 </template>
 
 <script>
+/**
+ * 商品详情的功能组件
+ */
 export default {
     props:{
         food:{
@@ -32,6 +35,9 @@ export default {
         }
     },
     methods:{
+        /**
+         * 购买商品
+         */
         buyFn(){
             if(!this.food.count){
                 this.$alert("你当前没有选择购买的商品","提示",
@@ -53,8 +59,10 @@ export default {
                 })
             }
         },
+        /**
+         * 添加订单商品
+         */
         addFn(){
-            // this.$router.push({path:"/order"})
             if(this.food.count){
                 this.$toast.message("添加成功")
                 this.$store.commit("getFood",this.food)
@@ -62,6 +70,9 @@ export default {
         }
     },
     computed:{
+        /**
+         * 计算总价格
+         */
         total(){
             if(this.food.count){
                 return this.food.count*this.food.min_price

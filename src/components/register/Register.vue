@@ -21,6 +21,9 @@
 </template>
 
 <script>
+/**
+ * 注册页面
+ */
 export default {
   data () {
     return {
@@ -45,6 +48,9 @@ export default {
     }
    },
    methods:{
+       /**
+        * 提交表单进行注册
+        */
        submit(){
            this.$refs.form.validate().then((result)=>{
                if(result==true){
@@ -78,6 +84,9 @@ export default {
                }
            })
        },
+       /**
+        * 跳转到登录页面
+        */
        login(){
            this.$router.push({name:'LoginLink'})
        }

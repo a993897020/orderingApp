@@ -49,6 +49,9 @@
 </template>
 
 <script>
+/**
+ * 订单页面
+ */
 import Vue from 'vue'
 import Footer from '../footer/Footer'
 export default {
@@ -62,6 +65,9 @@ export default {
       }
     },
     methods:{
+      /**
+       * 购买商品
+       */
         buyFn(total){
           console.log(total)
           this.$confirm("您需要支付￥"+total+"元","信息",{
@@ -79,7 +85,9 @@ export default {
             }
           })
         },
-      
+      /**
+       * 删除商品
+       */
         deleteFn(){
           this.selectArr.forEach(p=>{
             this.foodData.forEach((o,i)=>{
@@ -118,6 +126,9 @@ export default {
     },
   
     computed:{
+      /**
+       * 计算订单总数量
+       */
       totalCount(){
         if(this.foodData){
           return this.foodData.length
@@ -125,6 +136,9 @@ export default {
           return 0
         }
       },
+      /**
+       * 计算订单总价格
+       */
      totalPrice(){
            let price=0
        if(this.foodData){
@@ -137,9 +151,15 @@ export default {
        return price
      }
     },
+    /**
+     * 当进入该页面获取store里的food属性
+     */
     beforeRouteEnter(to,from,next){
        next(vm=>vm.foodData=vm.$store.getters.food)
    },
+   /**
+    * 当离开此页面，初始化数据
+    */
     beforeRouteLeave(to, form, next) {
       this.isCheckboxAll=false
       this.admin=false

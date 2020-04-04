@@ -55,6 +55,9 @@
 </template>
 
 <script>
+/**
+ * 个人信息页面
+ */
 import BScroll from 'better-scroll'
 import Footer from '../footer/Footer'
 export default {
@@ -109,6 +112,9 @@ export default {
       })
     },
     methods:{
+      /**
+       * 退出登录
+       */
       handleLogin(){
         if(this.Login){
           localStorage.removeItem('username')
@@ -120,6 +126,9 @@ export default {
       }
     },
     computed:{
+      /**
+       * 获取登录信息
+       */
       name(){
         if(this.Login==true){
           return this.$store.getters.name

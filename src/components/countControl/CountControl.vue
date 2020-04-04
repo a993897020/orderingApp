@@ -9,6 +9,9 @@
 </template>
 
 <script>
+/**
+ * 商品数量控制组件
+ */
 import Vue from 'vue'
 export default {
    props:{
@@ -23,6 +26,9 @@ export default {
     }
  },
  methods:{
+     /**
+      * 添加数量
+      */
      addFn(){
          if(!this.food.count){
              Vue.set(this.food,"count",1)
@@ -30,6 +36,9 @@ export default {
              this.food.count++
          }
      },
+     /**
+      * 减少数量
+      */
      removeFn(){
          this.food.count--
      }

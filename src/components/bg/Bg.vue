@@ -6,6 +6,9 @@
 </template>
 
 <script>
+/**
+ * 启动页面
+ */
 export default {
   data () {
     return {
@@ -16,6 +19,9 @@ export default {
    
   },
   created(){
+    /**
+     * 3秒过后判断是否登录过跳转相应的页面
+     */
      setTimeout(() => {
         let lUsername=parseInt(localStorage.getItem('username'))
         let lPassword=parseInt(localStorage.getItem('password'))
@@ -24,7 +30,6 @@ export default {
             let { username,password }=res.data.result
             if(res.data.code==200){
               let isRight=lUsername==parseInt(username)&&lPassword==parseInt(password)
-              console.log(isRight)
               if(isRight){
                this.$router.push({name:'HomeLink'})
               this.$store.dispatch("setUser",username)

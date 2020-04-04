@@ -54,6 +54,9 @@
 </template>
 
 <script>
+/**
+ * 商品详情页面
+ */
 import CountControl from '../countControl/CountControl'
 import Shopping from '../shopping/Shopping'
 import BScroll from 'better-scroll'
@@ -90,11 +93,17 @@ export default {
     }
     },
     methods:{
+        /**
+         * 显示商品详情
+         */
         showView(){
             if(this.isDetails==false){
                 this.isDetails=true
             }
         },
+        /**
+         * 收藏
+         */
         starFn(){
             if(!this.$refs.star.style.color){
                this.$refs.star.style.color="#f57f17"
@@ -113,6 +122,9 @@ export default {
                 
             }
         },
+        /**
+         * 返回商品列表
+         */
         backFn(){
             if(this.isDetails==true){
                 this.isDetails=false;

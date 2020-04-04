@@ -19,6 +19,9 @@
 </template>
 
 <script>
+/**
+ * 登录页面
+ */
 export default {
   data () {
     return {
@@ -37,10 +40,16 @@ export default {
       }
     }
    },
+   /**
+    * 当进入此页面
+    */
    beforeRouteEnter(to,from,next){
        next(vm=>vm.$store.dispatch("setUser",null))
    },
    methods:{
+       /**
+        * 提交表单登录
+        */
        submit(){
            this.$refs.form.validate().then((result)=>{
                if(result==true){
@@ -101,6 +110,9 @@ export default {
                }
            })
        },
+       /**
+        * 跳转到注册页面
+        */
        register(){
            this.$router.push({name:'RegisterLink'})
        }
