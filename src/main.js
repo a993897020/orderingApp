@@ -15,7 +15,11 @@ import 'muse-ui-message/dist/muse-ui-message.css'
 import Message from 'muse-ui-message';
 
 
-const config={     //toast
+/**
+ * muse-ui
+ * toast配置
+ */
+const config={     
   position:' start',
   time:1000,
   closeIcon:'close',
@@ -25,9 +29,15 @@ const config={     //toast
   warningIcon:'priority_high',
   errorIcon:'warning'
 }
+/**
+ * axios全局配置
+ */
 // axios.defaults.baseURL="https://mapp-7684e.firebaseio.com/"
 Vue.prototype.http=axios
 Vue.config.productionTip = false
+/**
+ * 使用插件
+ */
 Vue.use(MuseUI)
 Vue.use(Loading)
 Vue.use(VueRouter)
@@ -35,7 +45,9 @@ Vue.use(Toast,config)
 Vue.use(Message)
 
 
-
+/**
+ * 路由配置
+ */
 const router =new VueRouter({
   mode:'history',
   routes,
