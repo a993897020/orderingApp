@@ -1,116 +1,116 @@
 <template>
-  <div class="home" >
-     <mu-appbar class="header"  color="orange500" >
-        <div class="address">
-          <mu-slide-picker class="addressSelect" v-show="flag" :visible-item-count="7" :values="addressList" :slots="addressSlots" @change="addressChange"></mu-slide-picker>
-        </div>
-         <p @click="select" class="text">{{addressItem}}
-            <i class="material-icons">
-              arrow_drop_down
-            </i>
-          </p>
-          <div class="search">
-            <input type="text" placeholder="搜索菜名或者商家" class="search-input">
-              <i class="material-icons search-icon">
-                search
-              </i>
-        </div>
-        <div class="icon">
-        </div>
-      </mu-appbar>
+  <div class="home">
+    <mu-appbar class="header" color="orange500">
+      <div class="address">
+        <mu-slide-picker class="addressSelect" v-show="flag" :visible-item-count="7" :values="addressList" :slots="addressSlots" @change="addressChange"></mu-slide-picker>
+      </div>
+      <p @click="select" class="text">{{addressItem}}
+        <i class="material-icons">
+          arrow_drop_down
+        </i>
+      </p>
+      <div class="search">
+        <input type="text" placeholder="搜索菜名或者商家" class="search-input">
+        <i class="material-icons search-icon">
+          search
+        </i>
+      </div>
+      <div class="icon">
+      </div>
+    </mu-appbar>
     <div class="wrapper" ref="homeScroll">
       <div class="wrapper-scroll">
         <div class="scroll">
-            <i class="material-icons" v-show="this.dropDown">
-             arrow_downward
+          <i class="material-icons" v-show="this.dropDown">
+            arrow_downward
           </i>
           <div v-show="this.dropDown">释放立即刷新</div>
-          <mu-circular-progress class="loading" :size="26"  v-show="this.isLoading"></mu-circular-progress>
+          <mu-circular-progress class="loading" :size="26" v-show="this.isLoading"></mu-circular-progress>
           <div v-show="this.isLoading" v-if="ing">正在刷新...</div>
           <div v-show="this.isLoading" v-else>刷新成功</div>
         </div>
         <mu-carousel class="img-wrapper" hide-controls hide-indicators>
-        <mu-carousel-item class="img-item">
-          <img src="./img/1.jpg" alt="">
-        </mu-carousel-item>
           <mu-carousel-item class="img-item">
-          <img src="./img/2.jpg" alt="">
-        </mu-carousel-item >
+            <img src="./img/1.jpg" alt="">
+          </mu-carousel-item>
           <mu-carousel-item class="img-item">
-          <img src="./img/3.jpg" alt="">
-        </mu-carousel-item>
+            <img src="./img/2.jpg" alt="">
+          </mu-carousel-item>
           <mu-carousel-item class="img-item">
-          <img src="./img/4.jpg" alt="">
-        </mu-carousel-item>
-      </mu-carousel>
-    <mu-container>
-      <mu-tabs :value.sync="active" center text-color="rgba(0, 0, 0, .54)" color="secondary" inverse>
-        <mu-tab>
-          <mu-icon value="menu" class="tab-item"></mu-icon>
-          菜单
-        </mu-tab>
-        <mu-tab >
-          <mu-icon value="whatshot" class="tab-item"></mu-icon>
-          热门
-        </mu-tab>
-      </mu-tabs>
-    </mu-container>
-    <div class="line"></div>
-    <!-- 菜单 -->
-    <div class="food-wrapper" v-show="this.active==0">
-      <ul class="food-class">
-        <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index!==0" >
-          <img src="./img/classicon.png" alt="">
-          {{classify.name}}
-          <ul class="food-content">
-            <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index" @click="newPage(food)">
-              <img :src="food.picture">
-              <div class="food-text-top">
-                <span>{{food.name}}</span>
-                <span>{{food.score.star}}</span>
-              </div>
-              <div class="food-text-bottom">
-                <span>￥{{food.min_price}}</span>
-                <span>{{food.month_saled_content}}</span>
-              </div>
+            <img src="./img/3.jpg" alt="">
+          </mu-carousel-item>
+          <mu-carousel-item class="img-item">
+            <img src="./img/4.jpg" alt="">
+          </mu-carousel-item>
+        </mu-carousel>
+        <mu-container>
+          <mu-tabs :value.sync="active" center text-color="rgba(0, 0, 0, .54)" color="secondary" inverse>
+            <mu-tab>
+              <mu-icon value="menu" class="tab-item"></mu-icon>
+              菜单
+            </mu-tab>
+            <mu-tab>
+              <mu-icon value="whatshot" class="tab-item"></mu-icon>
+              热门
+            </mu-tab>
+          </mu-tabs>
+        </mu-container>
+        <div class="line"></div>
+        <!-- 菜单 -->
+        <div class="food-wrapper" v-show="this.active==0">
+          <ul class="food-class">
+            <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index!==0">
+              <img src="./img/classicon.png" alt="">
+              {{classify.name}}
+              <ul class="food-content">
+                <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index" @click="newPage(food)">
+                  <img :src="food.picture">
+                  <div class="food-text-top">
+                    <span>{{food.name}}</span>
+                    <span>{{food.score.star}}</span>
+                  </div>
+                  <div class="food-text-bottom">
+                    <span>￥{{food.min_price}}</span>
+                    <span>{{food.month_saled_content}}</span>
+                  </div>
 
+                </li>
+              </ul>
             </li>
           </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- 热门 -->
-    <div class="food-wrapper" v-show="this.active==1">
-      <ul class="food-class">
-        <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index==0" >
-          <img src="./img/classicon.png" alt="">
-          {{classify.name}}
-          <ul class="food-content">
-            <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index"  @click="newPage(food)">
-              <img :src="food.picture" > 
-              <div class="food-text-top">
-                <span>{{food.name}}</span>
-                <span>{{food.score.star}}</span>
-              </div>
-              <div class="food-text-bottom">
-                <span>￥{{food.min_price}}</span>
-                <span>{{food.month_saled_content}}</span>
-              </div>
+        </div>
+        <!-- 热门 -->
+        <div class="food-wrapper" v-show="this.active==1">
+          <ul class="food-class">
+            <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index==0">
+              <img src="./img/classicon.png" alt="">
+              {{classify.name}}
+              <ul class="food-content">
+                <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index" @click="newPage(food)">
+                  <img :src="food.picture">
+                  <div class="food-text-top">
+                    <span>{{food.name}}</span>
+                    <span>{{food.score.star}}</span>
+                  </div>
+                  <div class="food-text-bottom">
+                    <span>￥{{food.min_price}}</span>
+                    <span>{{food.month_saled_content}}</span>
+                  </div>
+                </li>
+              </ul>
             </li>
           </ul>
-        </li>
-      </ul>
-    </div>
+        </div>
       </div>
       <app-footer></app-footer>
     </div>
-              <!-- 商品详情 -->
-              <app-details :food="details" ref="details"  ></app-details>
+    <!-- 商品详情 -->
+    <app-details :food="details" ref="details"></app-details>
   </div>
 </template>
 
 <script>
-const addressList={
+const addressList = {
   '北京': ['北京'],
   '广东': ['广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞', '中山', '潮州', '揭阳', '云浮'],
   '上海': ['上海'],
@@ -151,310 +151,308 @@ import Vue from 'vue'
 import BScorll from 'better-scroll'
 import Footer from '../footer/Footer'
 import Details from '../details/Details'
-var Mock=require('mockjs')
+var Mock = require('mockjs')
 
 export default {
-  inject:['reload'],
-  components:{
-    'app-footer':Footer,
-    'app-details':Details
+  inject: ['reload'],
+  components: {
+    'app-footer': Footer,
+    'app-details': Details
   },
-  data () {
+  data() {
     return {
-     addressSlots:[
-       {
-         width:'100%',
-         textAlign:'right',
-         values:Object.keys(addressList)
-       },
-       {
-         width:'100%',
-         textAlign:'left',
-         values:['北京']
-       }
-     ],
-         addressList:['北京','北京'],
-         addressProvince:'北京',
-         addressCity:'北京',
-         flag:false,    //address地区选中
-         shift:'home', //底部导航active
-         foods:{},    //foods数据内容
-         active:0,    //tab页面切换   0是菜单   1是热门
-         homeScroll:{},
-         isLoading:false,
-         ing:true,
-         dropDown:false,
-         details:{}
-      }
-    },
-    updated(){
-       this.homeScroll=new BScorll(this.$refs.homeScroll,//Y轴滚动
+      addressSlots: [
+        {
+          width: '100%',
+          textAlign: 'right',
+          values: Object.keys(addressList)
+        },
+        {
+          width: '100%',
+          textAlign: 'left',
+          values: ['北京']
+        }
+      ],
+      addressList: ['北京', '北京'],
+      addressProvince: '北京',
+      addressCity: '北京',
+      flag: false,    //address地区选中
+      shift: 'home', //底部导航active
+      foods: {},    //foods数据内容
+      active: 0,    //tab页面切换   0是菜单   1是热门
+      homeScroll: {},
+      isLoading: false,
+      ing: true,
+      dropDown: false,
+      details: {}
+    }
+  },
+  updated() {
+    this.homeScroll = new BScorll(this.$refs.homeScroll,//Y轴滚动
       {
-        click:true,
-        scrollY:true,
+        click: true,
+        scrollY: true,
         probeType: 3,
-        })  
-    },
-    created(){
-      this.http.get('api/goods')                  //从接口获取数据
-        .then((res=>{
-          if(res.data.code==0){
-            this.foods=res.data.data.food_spu_tags
-            this.foods.forEach(item => {
-              item.spus.forEach(food=>{
-                   var star=Mock.mock({
-                        "star|3-5": "★"
-                })
-                Vue.set(food,'score',star)   //数据中每个food没有评分,使用mock来模拟数据score,Vue.set添加score数据
+      })
+  },
+  created() {
+    this.http.get('api/goods')                  //从接口获取数据
+      .then((res => {
+        if (res.data.code == 0) {
+          this.foods = res.data.data.food_spu_tags
+          this.foods.forEach(item => {
+            item.spus.forEach(food => {
+              var star = Mock.mock({
+                "star|3-5": "★"
               })
-            });
-          }
-        }))
-        .catch((error)=>{
-          console.log(error)
+              Vue.set(food, 'score', star)   //数据中每个food没有评分,使用mock来模拟数据score,Vue.set添加score数据
+            })
+          });
+        }
+      }))
+      .catch((error) => {
+        console.log(error)
+      })
+    this.$nextTick(() => {
+      this.homeScroll = new BScorll(this.$refs.homeScroll,//Y轴滚动
+        {
+          click: true,
+          scrollY: true,
+          probeType: 3,
         })
-    this.$nextTick(()=>{
-      this.homeScroll=new BScorll(this.$refs.homeScroll,//Y轴滚动
-      {
-        click:true,
-        scrollY:true,
-        probeType: 3,
-        })  
-      this.homeScroll.on('scroll',(pos)=>{   //向上滑动刷新
-        if(pos.y>=50){
-          this.dropDown=true
-        }else{
-          this.dropDown=false
+      this.homeScroll.on('scroll', (pos) => {   //向上滑动刷新
+        if (pos.y >= 50) {
+          this.dropDown = true
+        } else {
+          this.dropDown = false
         }
       })
-      this.homeScroll.on('touchEnd',(pos)=>{   //松开滑动
-        if(pos.y>=50){
-          this.dropDown=false
-          this.isLoading=true
-            setTimeout(() => {                 
-              this.ing=false
-            }, 2000);
-            setTimeout(()=>{
-              this.isLoading=false
-              this.ing=true
-              this.reload()
-            },2500)
+      this.homeScroll.on('touchEnd', (pos) => {   //松开滑动
+        if (pos.y >= 50) {
+          this.dropDown = false
+          this.isLoading = true
+          setTimeout(() => {
+            this.ing = false
+          }, 2000);
+          setTimeout(() => {
+            this.isLoading = false
+            this.ing = true
+            this.reload()
+          }, 2500)
         }
       })
     })
+  },
+  // mounted(){
+  //    var data=Mock.mock({
+  //         "star|3-5": "★"
+  //   })
+
+  //   console.log(data)
+
+  // },
+  methods: {
+    /**
+     * 选择地址
+     */
+    addressChange(value, index) {
+      switch (index) {
+        case 0:
+          this.addressProvince = value;
+          const arr = addressList[value];
+          this.addressSlots[1].values = arr
+          this.addressCity = arr[0]
+          break;
+        case 1:
+          this.addressCity = value;
+          break;
+      }
+      this.addressList = [this.addressProvince, this.addressCity]
+      // console.log(value,index)
     },
-    // mounted(){
-    //    var data=Mock.mock({
-    //         "star|3-5": "★"
-    //   })
-
-    //   console.log(data)
-
-    // },
-    methods:{
-      /**
-       * 选择地址
-       */
-      addressChange(value,index){
-        switch(index){
-          case 0:
-            this.addressProvince=value;
-            const arr=addressList[value];
-            this.addressSlots[1].values = arr
-            this.addressCity = arr[0]
-            break;
-          case 1:
-            this.addressCity=value;
-            break;
-        }
-        this.addressList=[this.addressProvince,this.addressCity]
-        // console.log(value,index)
-      },
-      select(){
-          this.flag=!this.flag;
-      },
-      /**
-       * 点击显示商品详情
-       */
-     newPage(food){
+    select() {
+      this.flag = !this.flag;
+    },
+    /**
+     * 点击显示商品详情
+     */
+    newPage(food) {
       //  console.log(food)
-     
-      this.details=food;
+
+      this.details = food;
       this.$refs.details.showView()
-     },
-  
     },
-    computed:{
-      addressItem(){
-        if(this.addressProvince===this.addressCity){
-          return this.addressProvince
-        }else{
-          return this.addressProvince+"  "+this.addressCity
-        }
+
+  },
+  computed: {
+    addressItem() {
+      if (this.addressProvince === this.addressCity) {
+        return this.addressProvince
+      } else {
+        return this.addressProvince + "  " + this.addressCity
       }
     }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.home{
-        overflow:hidden;
-        position:fixed;
-        height: 100%;
-        width: 100%;
-        .header{
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 80px;
-        .mu-appbar{
-        z-index: 3;
-        overflow: hidden;
-        background-color: orange;
-        }
-          .address{
-            width: 150px;
-            height: 180px;
-            margin-left:-12px;
-            position: fixed;
-            left: 0;
-            top: 50px;
-            overflow: hidden;
-            z-index: -1;
-            // background-color: #ccc;
-            .addressSelect{
-            
-        }
-            }
-          .text{
-              color: #fff;
-              position: fixed;
-              left: 10px;
-              top: 15px;
-              z-index: 5;
-              width: 110px;
-              height: 50px;
-              font-size: 12px;
-              line-height: 50px;
-            }
-            .material-icons{
-            vertical-align: middle;
-            margin-left: -5px;
-            }
-            .search{
-              width: 100%;
-              padding: 0 50px 0 65px;
-              position: relative;
-              left: 0;
-              top: 0;
-              height: 50px;
-              line-height: 50px;
-              .search-input{
-              width:100%;
-              height: 40px;
-              border-radius: 5px;
-              border: 0;
-              outline: none;
-              // padding: 0 35px;
-              text-indent:3em;
-              font-size: 12px;
-              box-sizing: border-box;
-              }
-              .search-icon{
-                position:absolute;
-                left: 80px;
-                top: 50%;
-                height: 30px;
-                margin-top:-5px;
-                color: #999;
-                font-size: 20px;
-
-              }
-            }
-            .icon{
-              width: 50px;
-              height: 45px;
-            background-image: url('./img/icon.png');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            position:fixed;
-            right: 10px;
-            top: 20px;
-            } 
+.home {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    .mu-appbar {
+      z-index: 3;
+      overflow: hidden;
+      background-color: orange;
+    }
+    .address {
+      width: 150px;
+      height: 180px;
+      margin-left: -12px;
+      position: fixed;
+      left: 0;
+      top: 50px;
+      overflow: hidden;
+      z-index: -1;
+      // background-color: #ccc;
+      .addressSelect {
       }
-          .wrapper{
-            width: 100%;
-            height: 85%;
-            .wrapper-scroll{
-              .scroll{
-                  text-align: center;
-                  position: relative;
-                  top: 80px;
-              }
-               .img-wrapper{
-                  margin-top: 81px;
-                  height: 200px;
-                .img-item{
-                  width:100%;
-                  height: 200px;
-                    img{
-                    width: 100%;
-                    height: 100%;
-                  }
-                }
-              }
-        .line{
-          width: 100%;
-          height: 10px;
-          background:rgba(0,0,0,.1);
-        }
-      .food-wrapper{
+    }
+    .text {
+      color: #fff;
+      position: fixed;
+      left: 10px;
+      top: 15px;
+      z-index: 5;
+      width: 110px;
+      height: 50px;
+      font-size: 12px;
+      line-height: 50px;
+    }
+    .material-icons {
+      vertical-align: middle;
+      margin-left: -5px;
+    }
+    .search {
+      width: 100%;
+      padding: 0 50px 0 65px;
+      position: relative;
+      left: 0;
+      top: 0;
+      height: 50px;
+      line-height: 50px;
+      .search-input {
         width: 100%;
-        .food-class{
+        height: 40px;
+        border-radius: 5px;
+        border: 0;
+        outline: none;
+        // padding: 0 35px;
+        text-indent: 3em;
+        font-size: 12px;
+        box-sizing: border-box;
+      }
+      .search-icon {
+        position: absolute;
+        left: 80px;
+        top: 50%;
+        height: 30px;
+        margin-top: -5px;
+        color: #999;
+        font-size: 20px;
+      }
+    }
+    .icon {
+      width: 50px;
+      height: 45px;
+      background-image: url("./img/icon.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      position: fixed;
+      right: 10px;
+      top: 20px;
+    }
+  }
+  .wrapper {
+    width: 100%;
+    height: 85%;
+    .wrapper-scroll {
+        padding-bottom: 20px;
+      .scroll {
+        text-align: center;
+        position: relative;
+      }
+      .img-wrapper {
+        margin-top: 81px;
+        height: 200px;
+        .img-item {
+          width: 100%;
+          height: 200px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .line {
+        width: 100%;
+        height: 10px;
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .food-wrapper {
+        width: 100%;
+        .food-class {
           padding: 20px;
-          .food-class-item{
+          .food-class-item {
             // border: 1px solid #000;
             margin-bottom: 10px;
-            img{
-              width:5px;
+            img {
+              width: 5px;
               height: 20px;
               vertical-align: top;
             }
-            .food-content{
+            .food-content {
               width: 100%;
-              .food-content-item{
+              .food-content-item {
                 width: 50%;
-                display:inline-block;
+                display: inline-block;
                 vertical-align: top;
                 overflow: hidden;
-                img{
+                img {
                   width: 100%;
-                  height:31.25vw 
+                  height: 31.25vw;
                 }
-                .food-text-top{
+                .food-text-top {
                   font-size: 12px;
                   text-align: center;
                   padding-bottom: 5px;
-                  span:first-child{
+                  span:first-child {
                     width: 50%;
                   }
-                  span:last-child{
+                  span:last-child {
                     width: 50%;
-                    padding-left:15px;
+                    padding-left: 15px;
                     color: rgba(225, 152, 0, 1);
                   }
                 }
-                .food-text-bottom{
+                .food-text-bottom {
                   font-size: 12px;
-                  text-align:center;
-                  span:first-child{
+                  text-align: center;
+                  span:first-child {
                     padding-right: 15px;
                     color: red;
                   }
-                  span:last-child{
-                    color:rgba(225, 152, 0, 1);
+                  span:last-child {
+                    color: rgba(225, 152, 0, 1);
                   }
                 }
               }

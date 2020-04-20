@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <!-- <Bg></Bg> -->
-         <keep-alive>        <!--  保留状态避免重新渲染 -->
-     <router-view v-if="isRouterAlive"></router-view>
-        </keep-alive>
+    <keep-alive>
+      <!--  保留状态避免重新渲染 -->
+      <router-view v-if="isRouterAlive"></router-view>
+    </keep-alive>
     <!-- <HelloWorld/> -->
-  
-    </div>
+
+  </div>
 </template>
 
 <script>
@@ -16,33 +17,31 @@ import Bg from './components/bg/Bg'
 export default {
   name: 'App',
   components: {
-    HelloWorld,Bg
+    HelloWorld, Bg
   },
-  provide(){    //声明reload方法，控制router-view的显示或隐藏
+  provide() {    //声明reload方法，控制router-view的显示或隐藏
     return {
-      reload:this.reload
+      reload: this.reload
     }
   },
 
-  data(){
-    return{
-      isRouterAlive:true,
+  data() {
+    return {
+      isRouterAlive: true,
     }
   },
- 
 
-  methods:{
-    reload(){
-      this.isRouterAlive=false
-      this.$nextTick(()=>{
-        this.isRouterAlive=true
+
+  methods: {
+    reload() {
+      this.isRouterAlive = false
+      this.$nextTick(() => {
+        this.isRouterAlive = true
       })
     }
-  }
+  },
 }
 </script>
 
 <style lang='scss'>
-
-    
 </style>

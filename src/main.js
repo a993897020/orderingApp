@@ -16,7 +16,7 @@ import Message from 'muse-ui-message';
 
 
 const config={     //toast
-  position:'bottom',
+  position:' start',
   time:1000,
   closeIcon:'close',
   close:true,
