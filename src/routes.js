@@ -1,3 +1,6 @@
+/**
+ * 路由
+ */
 import Bg from './components/bg/Bg.vue'
 import Home from './components/home/Home.vue'
 import Register from './components/register/Register.vue'

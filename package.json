@@ -1,7 +1,7 @@
 {
   "name": "mine-app",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "A Vue.js ordering",
   "author": "a993897020 <993897020@qq.com>",
   "private": true,
   "scripts": {

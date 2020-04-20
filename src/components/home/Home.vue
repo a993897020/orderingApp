@@ -20,15 +20,6 @@
     </mu-appbar>
     <div class="wrapper" ref="homeScroll">
       <div class="wrapper-scroll">
-        <div class="scroll">
-          <i class="material-icons" v-show="this.dropDown">
-            arrow_downward
-          </i>
-          <div v-show="this.dropDown">释放立即刷新</div>
-          <mu-circular-progress class="loading" :size="26" v-show="this.isLoading"></mu-circular-progress>
-          <div v-show="this.isLoading" v-if="ing">正在刷新...</div>
-          <div v-show="this.isLoading" v-else>刷新成功</div>
-        </div>
         <mu-carousel class="img-wrapper" hide-controls hide-indicators>
           <mu-carousel-item class="img-item">
             <img src="./img/1.jpg" alt="">
@@ -221,25 +212,9 @@ export default {
           probeType: 3,
         })
       this.homeScroll.on('scroll', (pos) => {   //向上滑动刷新
-        if (pos.y >= 50) {
-          this.dropDown = true
-        } else {
-          this.dropDown = false
-        }
-      })
-      this.homeScroll.on('touchEnd', (pos) => {   //松开滑动
-        if (pos.y >= 50) {
-          this.dropDown = false
-          this.isLoading = true
-          setTimeout(() => {
-            this.ing = false
-          }, 2000);
-          setTimeout(() => {
-            this.isLoading = false
-            this.ing = true
-            this.reload()
-          }, 2500)
-        }
+        if (pos.y> 0) {
+          this.homeScroll.scrollTo(0,0,0)
+        }   
       })
     })
   },
@@ -384,13 +359,9 @@ export default {
   }
   .wrapper {
     width: 100%;
-    height: 85%;
+    height: 80%;
     .wrapper-scroll {
         padding-bottom: 20px;
-      .scroll {
-        text-align: center;
-        position: relative;
-      }
       .img-wrapper {
         margin-top: 81px;
         height: 200px;
