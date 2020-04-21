@@ -20,7 +20,7 @@ import Message from 'muse-ui-message';
  * toast配置
  */
 const config={     
-  position:' start',
+  position:'bottom',
   time:1000,
   closeIcon:'close',
   close:true,
