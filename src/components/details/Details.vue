@@ -137,7 +137,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped lang="less">
 .details {
   width: 100%;
   height: 100%;
@@ -198,7 +198,7 @@ export default {
     .line {
       width: 100%;
       height: 5px;
-      background: rgba($color: #000000, $alpha: 0.1);
+      background: rgba(0, 0, 0, .1);
     }
     .scroll-box {
       width: 100%;

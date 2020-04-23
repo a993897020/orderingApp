@@ -48,7 +48,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped lang="less">
 .countControl {
   display: inline-block;
   .add {
