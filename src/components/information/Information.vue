@@ -23,12 +23,12 @@
                 <mu-button @click="handleLogin" color="red">{{Login?'退出登陆':'登陆'}}</mu-button>
               </div>
               <mu-avatar slot="avatar">
-                <img src="./img/tx.jpg" alt="" v-if="isLogin">
-                <img src="./img/tx2.png" alt="" v-if="!isLogin">
+                <img src="../../assets/tx.jpg" alt="" v-if="isLogin">
+                <img src="../../assets/tx2.png" alt="" v-if="!isLogin">
               </mu-avatar>
             </mu-card-header>
             <mu-card-media title="夕阳西下" sub-title="傍晚" v-if="isLogin">
-              <img src="./img/sun.jpg" alt="">
+              <img src="../../assets/sun.jpg" alt="">
             </mu-card-media>
             <mu-card-title title="我的感受" sub-title="渴望" v-if="isLogin"></mu-card-title>
             <mu-card-text v-if="isLogin">

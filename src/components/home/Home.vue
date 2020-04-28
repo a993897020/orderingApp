@@ -22,16 +22,16 @@
       <div class="wrapper-scroll">
         <mu-carousel class="img-wrapper" hide-controls hide-indicators>
           <mu-carousel-item class="img-item">
-            <img src="./img/1.jpg" alt="">
+            <img src="../../assets/1.jpg" alt="">
           </mu-carousel-item>
           <mu-carousel-item class="img-item">
-            <img src="./img/2.jpg" alt="">
+            <img src="../../assets/2.jpg" alt="">
           </mu-carousel-item>
           <mu-carousel-item class="img-item">
-            <img src="./img/3.jpg" alt="">
+            <img src="../../assets/3.jpg" alt="">
           </mu-carousel-item>
           <mu-carousel-item class="img-item">
-            <img src="./img/4.jpg" alt="">
+            <img src="../../assets/4.jpg" alt="">
           </mu-carousel-item>
         </mu-carousel>
         <mu-container>
@@ -51,7 +51,7 @@
         <div class="food-wrapper" v-show="this.active==0">
           <ul class="food-class">
             <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index!==0">
-              <img src="./img/classicon.png" alt="">
+              <img src="../../assets/classicon.png" alt="">
               {{classify.name}}
               <ul class="food-content">
                 <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index" @click="newPage(food)">
@@ -74,7 +74,7 @@
         <div class="food-wrapper" v-show="this.active==1">
           <ul class="food-class">
             <li class="food-class-item" v-for="(classify,index) in this.foods" :key="index" v-show="index==0">
-              <img src="./img/classicon.png" alt="">
+              <img src="../../assets/classicon.png" alt="">
               {{classify.name}}
               <ul class="food-content">
                 <li class="food-content-item" v-for="(food,index) in classify.spus" :key="index" @click="newPage(food)">
@@ -187,10 +187,10 @@ export default {
       })
   },
   created() {
-    this.http.get('api/goods')                  //从接口获取数据
+    this.http.get('http://json.apiopen.top/gGoods')                  //从接口获取数据
       .then((res => {
-        if (res.data.code == 0) {
-          this.foods = res.data.data.food_spu_tags
+        if (res.data.code == 200) {
+          this.foods = res.data.result.food_spu_tags
           this.foods.forEach(item => {
             item.spus.forEach(food => {
               var star = Mock.mock({
@@ -349,7 +349,7 @@ export default {
     .icon {
       width: 50px;
       height: 45px;
-      background-image: url("./img/icon.png");
+      background-image: url("../../assets/icon.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
       position: fixed;

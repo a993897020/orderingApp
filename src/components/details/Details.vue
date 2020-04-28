@@ -28,7 +28,7 @@
               <li v-for="(rating,index) in food.rating.comment_list" :key="index">
                 <div class="headerImg">
                   <img :src="rating.user_icon" alt="" v-if="rating.user_icon">
-                  <img src="./img/anonymity.png" alt="" v-if="!rating.user_icon">
+                  <img src="../../assets/anonymity.png" alt="" v-if="!rating.user_icon">
                 </div>
                 <div class="name">
                   {{rating.user_name}}

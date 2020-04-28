@@ -49,7 +49,7 @@ Vue.use(Message)
  * 路由配置
  */
 const router =new VueRouter({
-  mode:'history',
+  // mode:'history',
   routes,
   linkActiveClass:"active",
 

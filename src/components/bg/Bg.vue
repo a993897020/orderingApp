@@ -15,9 +15,6 @@ export default {
       loading1: false,
     }
   },
-  methods: {
-
-  },
   created() {
     /**
      * 3秒过后判断是否登录过跳转相应的页面
@@ -46,7 +43,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .bg {
-  background-image: url("./img/bg.jpg");
+  background-image: url("../../assets/bg.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
